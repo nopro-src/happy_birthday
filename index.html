@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Audio -->
+  <audio id="bgMusic" src="birthday.mp3" loop></audio>
+  <audio id="typeSound" src="type.mp3"></audio>
+
+  <!-- Background -->
+  <div class="bg"></div>
+  <div class="overlay"></div>
+
+  <!-- Fireworks -->
+  <canvas id="fireworks"></canvas>
+
+  <!-- Icons -->
+  <div class="floating-icons"></div>
+
+  <!-- Content -->
+  <main class="container">
+    <div class="title-box">
+      <h1 class="name solid" id="nameText"></h1>
+      <p class="dob solid" id="dobText"></p>
+    </div>
+
+    <p class="hint hidden" id="hint">Chạm nhẹ vào màn hình để bật nhạc 🎶</p>
+
+    <div class="wishes">
+      <p id="wishText"></p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

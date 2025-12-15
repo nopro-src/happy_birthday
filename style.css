@@ -1,0 +1,145 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    color: white;
+    font-family: system-ui, sans-serif;
+}
+
+/* BACKGROUND */
+.bg {
+    position: fixed;
+    inset: 0;
+    background: url("https://images.unsplash.com/photo-1519681393784-d120267933ba") center/cover;
+    animation: zoomBg 28s ease-in-out infinite alternate;
+    z-index: -3;
+}
+
+@keyframes zoomBg {
+    to {
+        transform: scale(1.15);
+    }
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle, rgba(0, 0, 0, .25), rgba(0, 0, 0, .9));
+    z-index: -2;
+}
+
+/* CONTENT */
+.container {
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+    padding: env(safe-area-inset-top) 16px env(safe-area-inset-bottom);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.title-box {
+    margin-bottom: 8px;
+}
+
+.name {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.5rem, 9vw, 6rem);
+    margin-bottom: -6px;
+}
+
+.dob {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.0rem, 5vw, 3rem);
+    margin-top: -2px;
+}
+
+.glow {
+    background: linear-gradient(90deg, #ffb6d5, #ffd1e8, #ff8fc7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pulse {
+    animation: pulseColor 3s infinite;
+}
+
+@keyframes pulseColor {
+    0% {
+        text-shadow: 0 0 8px #ffb6d5;
+    }
+
+    50% {
+        text-shadow: 0 0 18px #ffd700;
+    }
+
+    100% {
+        text-shadow: 0 0 12px #ff8fc7;
+    }
+}
+
+/* HINT */
+.hint {
+    margin-top: 12px;
+    opacity: .75;
+    transition: opacity .6s;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* WISH */
+#wishText {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(1.6rem, 4.5vw, 2.2rem);
+    min-height: 64px;
+    margin-top: -30px;
+}
+
+.wish-char {
+    display: inline-block;
+    animation: fadeChar .4s ease forwards;
+}
+
+@keyframes fadeChar {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ICONS */
+.floating-icons span {
+    position: fixed;
+    bottom: -40px;
+    animation: floatUp linear infinite;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-120vh);
+        opacity: 0;
+    }
+}
+
+/* FIREWORKS */
+#fireworks {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+}
