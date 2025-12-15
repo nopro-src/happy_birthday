@@ -2,13 +2,17 @@ const music = document.getElementById("bgMusic");
 const typeSound = document.getElementById("typeSound");
 const hint = document.getElementById("hint");
 const wishText = document.getElementById("wishText");
+const tickSound = document.getElementById("tickSound");
+
+const introScreen = document.getElementById("introScreen");
+const introText = document.getElementById("introText");
 
 let wishesStarted = false;
 
 /* ===== TYPE ===== */
 function typeText(el, text, speed, callback) {
     let i = 0;
-    el.classList.add("typing");
+    el.textContent = "";
 
     const interval = setInterval(() => {
         el.textContent += text[i++];
@@ -17,36 +21,76 @@ function typeText(el, text, speed, callback) {
 
         if (i >= text.length) {
             clearInterval(interval);
-            el.classList.remove("typing");
             callback && callback();
         }
     }, speed);
 }
 
-/* ===== TITLE ===== */
-const nameEl = document.getElementById("nameText");
-const dobEl = document.getElementById("dobText");
+/* ===== MAIN CONTENT (GIỮ NGUYÊN LOGIC) ===== */
+function startMain() {
+    const nameEl = document.getElementById("nameText");
+    const dobEl = document.getElementById("dobText");
 
-typeText(nameEl, "Phạm Huyền Trang", 120, () => {
-    nameEl.classList.replace("solid", "glow");
+    typeText(nameEl, "Phạm Huyền Trang", 120, () => {
+        nameEl.classList.replace("solid", "glow");
 
-    setTimeout(() => {
-        typeText(dobEl, "16-12-2004", 140, () => {
-            dobEl.classList.replace("solid", "glow");
+        setTimeout(() => {
+            typeText(dobEl, "16-12-2004", 140, () => {
+                dobEl.classList.replace("solid", "glow");
 
-            typeSound.pause();
-            typeSound.currentTime = 0;
+                typeSound.pause();
+                typeSound.currentTime = 0;
 
-            nameEl.classList.add("pulse");
-            dobEl.classList.add("pulse");
+                nameEl.classList.add("pulse");
+                dobEl.classList.add("pulse");
 
-            // HIỆN HINT SAU KHI GÕ XONG
-            hint.classList.remove("hidden");
-        });
-    }, 400);
+                hint.classList.remove("hidden");
+            });
+        }, 400);
+    });
+}
+
+/* ===== INTRO CLICK + COUNTDOWN ===== */
+introScreen.addEventListener("click", () => {
+    let count = 5;
+    introText.textContent = count;
+
+    // unlock audio
+    typeSound.play().catch(() => { });
+    typeSound.pause();
+    typeSound.currentTime = 0;
+
+    tickSound.currentTime = 0;
+    tickSound.play().catch(() => { });
+
+    const timer = setInterval(() => {
+        count--;
+
+        if (count > 0) {
+            introText.textContent = count;
+
+            // animation only
+            introText.classList.remove("shake");
+            void introText.offsetWidth;
+            introText.classList.add("shake");
+
+        } else {
+            clearInterval(timer);
+
+            introText.textContent = "🎉";
+
+            introScreen.classList.add("fade-out");
+
+            setTimeout(() => {
+                introScreen.remove();
+                startMain();
+            }, 800);
+        }
+    }, 1000);
 });
 
-/* ===== CLICK ===== */
+
+/* ===== CLICK START WISH ===== */
 document.addEventListener("click", () => {
     if (!wishesStarted && !hint.classList.contains("hidden")) {
         hint.classList.add("hidden");
@@ -70,8 +114,6 @@ const wishes = [
     "Chúc m được yêu thương đúng cách, vào đúng lúc, bởi đúng người 💖",
     "Mỗi năm thêm tuổi là một năm thêm trưởng thành và thêm yêu bản thân hơn ✨"
 ];
-
-
 let wishIndex = 0;
 
 function randomColor() {
@@ -102,6 +144,7 @@ function startWishes() {
     }, 80);
 }
 
+/* ===== ICONS ===== */
 const icons = ["💖", "🎂", "🎁", "🌸", "✨", "💫", "🎉", "💝"];
 const iconBox = document.querySelector(".floating-icons");
 
@@ -115,7 +158,7 @@ setInterval(() => {
     setTimeout(() => span.remove(), 14000);
 }, 1200);
 
-/* ===== FIREWORKS ===== */
+/* ===== FIREWORKS (GIỮ NGUYÊN) ===== */
 const canvas = document.getElementById("fireworks");
 const ctx = canvas.getContext("2d");
 

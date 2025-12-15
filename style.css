@@ -143,3 +143,108 @@ body {
     inset: 0;
     z-index: 0;
 }
+
+/* ===== INTRO SCREEN ===== */
+#introScreen {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, #1a1a1a, #000);
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-box {
+    text-align: center;
+    animation: introFadeIn 1s ease forwards;
+}
+
+@keyframes introFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.intro-heart {
+    font-size: 3.5rem;
+    animation: heartBeat 1.4s infinite;
+}
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#introText {
+    margin-top: 16px;
+    font-size: 1.2rem;
+    opacity: .85;
+}
+
+/* FADE OUT */
+#introScreen.fade-out {
+    animation: introFadeOut .8s forwards;
+}
+
+@keyframes introFadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+/* ===== COUNTDOWN NUMBER ===== */
+#introText {
+    font-size: clamp(3.2rem, 10vw, 5rem);
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffd1e8;
+    text-shadow:
+        0 0 12px rgba(255, 182, 213, .8),
+        0 0 28px rgba(255, 140, 199, .6);
+    animation: countdownPop .6s ease;
+}
+
+/* hiệu ứng pop mỗi lần đổi số */
+@keyframes countdownPop {
+    0% {
+        transform: scale(.6);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* rung nhẹ */
+.shake {
+    animation: shake .35s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
