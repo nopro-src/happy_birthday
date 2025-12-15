@@ -26,7 +26,7 @@ function typeText(el, text, speed, callback) {
     }, speed);
 }
 
-/* ===== MAIN CONTENT (GIỮ NGUYÊN LOGIC) ===== */
+/* ===== MAIN CONTENT ===== */
 function startMain() {
     const nameEl = document.getElementById("nameText");
     const dobEl = document.getElementById("dobText");
@@ -35,7 +35,7 @@ function startMain() {
         nameEl.classList.replace("solid", "glow");
 
         setTimeout(() => {
-            typeText(dobEl, "16-12-2004", 140, () => {
+            typeText(dobEl, "16-12-2025", 140, () => {
                 dobEl.classList.replace("solid", "glow");
 
                 typeSound.pause();
@@ -102,17 +102,13 @@ document.addEventListener("click", () => {
 
 /* ===== WISHES ===== */
 const wishes = [
-    "Chúc m luôn rạng rỡ như ánh trăng đêm 🌙",
-    "Mỗi khoảnh khắc đều dịu dàng và ấm áp 💖",
-    "Tuổi mới là những yêu thương không lời 🎂",
-    "Và là một trái tim luôn được nâng niu ✨",
-
-    "Mong rằng mỗi ngày trôi qua đều mang đến cho m một lý do để mỉm cười 🌸",
-    "Chúc m luôn bình yên để lắng nghe chính mình, và đủ mạnh mẽ để theo đuổi ước mơ 💫",
-    "Tuổi mới không cần hoàn hảo, chỉ cần hạnh phúc theo cách mình mong muốn 🎁",
-    "Hy vọng những điều dịu dàng nhất của cuộc sống sẽ luôn tìm đến với m 💝",
-    "Chúc m được yêu thương đúng cách, vào đúng lúc, bởi đúng người 💖",
-    "Mỗi năm thêm tuổi là một năm thêm trưởng thành và thêm yêu bản thân hơn ✨"
+    "Chúc mừng sinh nhật nhé 🎂",
+    "Dù chúng ta ít khi nói chuyện, nhưng tao vẫn luôn nhớ và trân trọng khoảng thời gian từng có cùng mày 💖",
+    "Có những người không cần xuất hiện thường xuyên, nhưng vẫn để lại dấu ấn rất sâu trong lòng người khác ✨",
+    "Mong rằng mỗi ngày trôi qua đều mang đến cho mày một lý do để mỉm cười 🌸",
+    "Chúc mày luôn bình yên để lắng nghe chính mình, và đủ mạnh mẽ để theo đuổi ước mơ 💫",
+    "Mỗi năm thêm tuổi là một năm thêm trưởng thành và thêm yêu bản thân hơn ✨",
+    "Tao mong tuổi mới của mày sẽ nhẹ nhàng hơn, gặp nhiều điều tốt đẹp và luôn có người hiểu, người thương mày thật lòng 💖"
 ];
 let wishIndex = 0;
 
